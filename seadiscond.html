@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disease Search</title>
-        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -138,20 +138,18 @@
 
         <h2>Selected Diseases</h2>
         <ul id="selectedDiseases" class="selected-diseases"></ul>
-        <!-- Corrected button ID to match the event listener -->
         <button id="submitButton">Submit</button>
-
     </div>
     <script type="module">
         import { handleSubmit } from './seadiscond.js';
 
         const commonDiseases = [
-            'Common Cold', 'Influenza (Flu)','Pneumonia', 'Chickenpox', 'Measles', 'Mumps', 'Rubella', 'Hepatitis',
+            'Common Cold', 'Influenza (Flu)', 'Pneumonia', 'Chickenpox', 'Measles', 'Mumps', 'Rubella', 'Hepatitis',
             'Tuberculosis', 'Malaria', 'Typhoid Fever', 'Cholera', 'Dengue Fever', 'Zika Virus', 'Ebola Virus', 'Lyme Disease',
             'Rabies', 'Hypertension', 'Diabetes', 'Asthma', 'Arthritis', 'Osteoporosis', 'Depression', 'Anxiety Disorders',
             'Bipolar Disorder', 'Schizophrenia', 'Alzheimer\'s Disease', 'Migraine', 'Parkinson\'s Disease', 'Multiple Sclerosis',
-            'Epilepsy','Psoriasis', 'Eczema', 'Lupus', 'Gout','Hyperthyroidism', 'Hypothyroidism',  'Leukemia', 'Lymphoma', 'Skin Cancer',
-            'Breast Cancer', 'Lung Cancer', 'Prostate Cancer','Colon Cancer', 'Kidney Disease', 'Heart Disease', 'Stroke', 'Obesity',
+            'Epilepsy', 'Psoriasis', 'Eczema', 'Lupus', 'Gout', 'Hyperthyroidism', 'Hypothyroidism', 'Leukemia', 'Lymphoma', 'Skin Cancer',
+            'Breast Cancer', 'Lung Cancer', 'Prostate Cancer', 'Colon Cancer', 'Kidney Disease', 'Heart Disease', 'Stroke', 'Obesity',
             'Chronic Obstructive Pulmonary Disease (COPD)'
         ];
 
@@ -175,7 +173,6 @@
                 checkbox.value = disease;
                 checkbox.onchange = handleCheckboxChange;
                 li.appendChild(checkbox);
-
 
                 diseaseList.appendChild(li);
             });
@@ -211,11 +208,13 @@
                 selectedDiseaseSet.delete(disease);
             }
             displaySelectedDiseases(Array.from(selectedDiseaseSet));
+            saveSelectedDiseases();
         }
 
         function removeSelectedDisease(disease) {
             selectedDiseaseSet.delete(disease);
             displaySelectedDiseases(Array.from(selectedDiseaseSet));
+            saveSelectedDiseases();
 
             // Uncheck the checkbox in the common diseases list
             const checkboxes = diseaseList.querySelectorAll('input[type="checkbox"]');
@@ -225,8 +224,6 @@
                 }
             });
         }
-
-
 
         function searchDisease() {
             const searchBox = document.getElementById('searchBox');
@@ -239,11 +236,32 @@
             displayDiseases(filteredDiseases);
         }
 
+        function saveSelectedDiseases() {
+            localStorage.setItem('selectedDiseases', JSON.stringify(Array.from(selectedDiseaseSet)));
+        }
+
+        function loadSelectedDiseases() {
+            const savedDiseases = JSON.parse(localStorage.getItem('selectedDiseases'));
+            if (savedDiseases) {
+                savedDiseases.forEach(disease => {
+                    selectedDiseaseSet.add(disease);
+                });
+                displaySelectedDiseases(Array.from(selectedDiseaseSet));
+                // Check the corresponding checkboxes
+                const checkboxes = diseaseList.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    if (selectedDiseaseSet.has(checkbox.value)) {
+                        checkbox.checked = true;
+                    }
+                });
+            }
+        }
+
         displayDiseases(commonDiseases);
+        loadSelectedDiseases();
 
         document.getElementById('searchBox').addEventListener('input', searchDisease);
         document.getElementById('submitButton').addEventListener('click', handleSubmit);
-        
     </script>
     <script type="module" src="fc.js"></script>
     <script type="module" src="seadiscond.js"></script>
