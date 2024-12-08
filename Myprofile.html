@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            background-color: lightblue;
+            color: #fff;
+        }
+
+        h1, h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        label {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea,
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            width: 750px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            flex: 1;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+
+        .change-password {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .change-password:hover {
+            background-color: #0056b3;
+        }
+
+        .faqs-container {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq {
+            margin-bottom: 20px;
+        }
+
+        .faq h3 {
+            font-size: 20px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .faq p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+    </style>
+</head>
+<body>
+    <a href="dashboard.html" class="home-button">Home</a>
+    <a href="change_password.html" class="change-password">Change Password</a>
+    <header>
+        <h1>My Profile</h1>
+    </header>
+    <div class="container">
+        <h2>Personal Information</h2>
+        <form id="personal-details-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your Name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your Email" required>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+            <label for="address">Address:</label>
+            <textarea id="address" placeholder="Enter your address" required></textarea>
+            <label for="age">Age:</label>
+            <input type="number" id="age" placeholder="Enter your age" required>
+            <label for="gender">Gender:</label>
+            <select id="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="medical-history">Medical History:</label>
+            <textarea id="medicalhistory" placeholder="Enter your Medical History if any"></textarea>
+            <h1>Notification Permission</h1>
+            <label for="notification-permission">Allow Notification Messages to this Phone Number:</label>
+            <input type="checkbox" id="notification-permission">
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+    <div class="faqs-container">
+        <h2>FAQs</h2>
+        <div class="faq">
+            <h3>How can I update my personal information?</h3>
+            <p>To update your personal information, navigate to the "My Profile" page and fill out the relevant fields with the updated information. Then, click on the "Save Changes" button.</p>
+        </div>
+        <div class="faq">
+            <h3>Can I change my notification preferences?</h3>
+            <p>Yes, you can change your notification preferences by toggling the "Allow notification messages to this phone number" checkbox on the "My Profile" page.</p>
+        </div>
+        <div class="faq">
+            <h3>How do I reset my password?</h3>
+            <p>To reset your password, click on the "Change Password" link on the "My Profile" page. You will be redirected to a page where you can enter a new password.</p>
+        </div>
+        <div class="faq">
+            <h3>What should I do if I encounter technical issues?</h3>
+            <p>If you encounter any technical issues while using the platform, please contact our support team for assistance. You can find contact information on the "Info Desk" page.</p>
+        </div>
+    </div>
+    <footer class="footer">
+        <a href="about_us.html">About Us</a>
+        <a href="Terms_and_conditions.html">Terms and Conditions</a>
+        <a href="Privacy_policy.html">Privacy Policy</a>
+        <a href="Blogs.html">Blogs</a>
+        <a href="Career.html">Career</a>
+        <a href="Academics.html">Academics</a>
+        <a href="Info_desk.html">Info Desk</a>
+        <p>&copy; 2024 PHC. All Rights Reserved.</p>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js"></script>
+    <script type="module" src="fc.js"></script>
+    <script type="module" src="profile.js"></script>
+</body>
+</html>

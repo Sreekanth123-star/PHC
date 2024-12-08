@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Health Consultant</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url("search.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #333;
+    margin: 0;
+  }
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
+  }
+  .nav-bar {
+    display: flex;
+    align-items: center;
+  }
+  .nav-bar img {
+    height: 80px; /* Increased height for better visibility */
+    max-width: 100%; /* Ensure logo doesn't overflow container */
+    object-fit: contain; /* Maintain aspect ratio of the logo */
+  }
+  .nav-bar .name-container {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 10px;
+    color: white; /* Adjusted text color for better contrast */
+  }
+  .nav-bar a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: white; /* Adjusted link color for better visibility */
+    font-size: 1.2em;
+    transition: opacity 0.3s;
+  }
+  .nav-bar a:hover {
+    opacity: 0.7; /* Added hover effect for links */
+  }
+  .hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    color: rgb(10, 8, 8); /* Adjusted text color for better readability */
+    padding: 20px;
+  }
+  .hero-section h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
+  .hero-section p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+  }
+  .hero-section .buttons {
+    display: flex;
+    gap: 20px;
+  }
+  .hero-section .buttons a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+    padding: 15px 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  .hero-section .buttons .button:hover {
+    background-color: white; /* Adjusted hover background color */
+  }
+  .footer {
+    padding: 20px 0;
+    text-align: center;
+    color: black; /* Adjusted text color for better visibility */
+    margin-top: 20px;
+  }
+  .footer a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black; /* Adjusted link color for better visibility */
+    font-size: 1em;
+  }
+  .footer a:hover {
+    opacity: 0.7; /* Added hover effect for links */
+  }
+  .footer p {
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+  <nav class="nav-bar">
+    <div class="nav-bar">
+      <img src="PHC(logo).png" alt="PHC Logo"> <!-- Adjusted alt text for accessibility -->
+      <div class="name-container">Personal Health Consultant</div>
+    </div>
+    <div>
+      <a href="about_us.html">About Us</a>
+      <a href="Blogs.html">Blogs</a>
+    </div>
+  </nav>
+  <div class="hero-section">
+    <h1>The Integrated Health Care Platform</h1>
+    <p>Your Virtual Health Companion: Describe, Discover, and Get Prescribed.</p>
+    <div class="buttons">
+      <a href="login.html" class="button">Sign In</a>
+      <a href="create_account.html" class="button">Sign Up</a>
+    </div>
+  </div>
+  <div class="footer">
+    <a href="terms_and_conditions.html">Terms and Conditions</a>
+    <a href="privacy_policy.html">Privacy Policy</a>
+    <a href="career.html">Career</a>
+    <a href="academics.html">Academics</a>
+    <a href="info_desk.html">Info Desk</a>
+    <p>&copy; 2024 PHC. All Rights Reserved.</p>
+    <p>Contact Information: <a href="mailto:PHC4u@gmail.com">PHC4u@gmail.com</a> | Phone: 123-456-7890</p>
+  </div>
+</body>
+</html>

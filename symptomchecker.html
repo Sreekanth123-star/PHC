@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Symptom Checker</title>
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0072c6;
+            color: #ffffff;
+            padding: 1rem;
+            text-align: center;
+        }
+        .transparent-box {
+            background-color: rgb(253, 253, 255);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1rem auto;
+            max-width: 700px;
+            position: relative;
+        }
+        .box-image {
+            position: absolute;
+            bottom: -45%;
+            right: 22.5%;
+            transform: translate(50%, -50%);
+            max-width: 300px;
+            border-radius: 10px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav li {
+            margin-bottom: 1rem;
+        }
+        main {                                                          
+            padding: 2rem;
+        }
+        footer {
+            background-color: transparent;
+            padding: 1rem;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        .footer-button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .footer-button:hover {
+            background-color: #45a049;
+        }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+        .checkbox-item {
+            margin-bottom: 1rem;
+        }
+        .radio-item {
+            margin-bottom: 1rem;
+        }
+        .add-symptoms-container {
+            margin-bottom: 2rem;
+        }
+        .add-symptoms-container h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .add-symptoms-container form {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .add-symptoms-container input[type="text"] {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .add-symptoms-container button[type="button"] {
+            padding: 0.5rem 1rem;
+            margin-left: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .add-symptoms-container button[type="button"]:hover {
+            background-color: #45a049;
+        }
+        .add-symptoms-container p {
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .add-symptoms-container ul {
+            padding-left: 1.5rem;
+            list-style-type: disc;
+        }
+    </style>
+</head>
+<body>
+    <a href="dashboard.html" class="home-button">Home</a>
+    <header>
+        <h1>Medical Symptom Checker</h1>
+    </header>
+    <div id="Introduction" class="transparent-box">
+        <img src="symp.png" alt="Image" class="box-image">
+        <h2>Check Your Symptoms</h2>
+        <p>Take a short Symptom Assessment. The information you provide is safe and won't be shared.</p>
+        <p>Your results will include:</p>
+        <ul>
+            <li>Possible causes of symptoms</li>
+            <li>Recommendations on what to do next</li>
+        </ul>
+        <!-- Footer with Next button -->
+        <footer>
+            <button class="footer-button" onclick="scrollToNextSection()">Next</button>
+        </footer>
+    </div>
+    <!-- Next Section: Terms of Service -->
+    <div id="terms-of-service" class="transparent-box" style="display: none;">
+        <h2>Terms of Service</h2>
+        <p>Before using the checkup, please read the Terms of Service and remember:</p>
+        <ul>
+            <li>Checkup isn’t a diagnosis. It’s only for your information and not a qualified medical opinion.</li>
+            <li>Checkup isn’t for emergencies. Call your local emergency number right away when there’s a health emergency.</li>
+            <li>Your data is safe. The information you give won’t be shared.</li>
+        </ul>
+        <div class="checkbox-item">
+            <input type="checkbox" id="checkbox1">
+            <label for="checkbox1">I have read and accept the Terms of Service.</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" id="checkbox2">
+            <label for="checkbox2">I agree for my health information to be used for the interview. More information in the Privacy Policy.</label>
+        </div>
+        <footer>
+            <button class="footer-button" onclick="scrollToNextSection()">Next</button>
+        </footer>
+    </div>
+    <div id="health-history" class="transparent-box" style="display: none;">
+        <h2>Health History</h2>
+        <form>
+            <fieldset>
+                <h3>Do any of the following statements apply to you?</h3>
+                <p>
+                    <label>
+                        <input type="checkbox" name="statements" value="recent-injury">
+                        I’ve recently suffered an injury
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input type="checkbox" name="statements" value="smoked-10-years">
+                        I have smoked cigarettes for at least 10 years
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input type="checkbox" name="statements" value="allergic-disease">
+                        I, or my family members, have an allergic disease (e.g., asthma, atopic dermatitis, food allergy)
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input type="checkbox" name="statements" value="overweight">
+                        I’m overweight or obese
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input type="checkbox" name="statements" value="hypertension">
+                        I have hypertension
+                    </label>
+                </p>
+            </fieldset>
+        </form>
+        <footer>
+            <button class="footer-button" onclick="scrollToNextSection()">Next</button>
+        </footer>
+    </div>
+    <div id="add-symptoms" class="transparent-box" style="display: none;">
+        <h2>Add Your Symptoms</h2>
+        <div class="add-symptoms-container">
+            <form id="symptom-form">
+                <input type="text" id="symptom-input" placeholder="Search symptoms, e.g., headache">
+                <button type="button" id="add-symptom-button">Add Symptom</button>
+            </form>
+            <p id="symptom-message"></p>
+            <ul id="symptom-list"></ul>
+        </div>
+        <footer>
+            <button class="footer-button" onclick="scrollToNextSection()">Next</button>
+        </footer>
+    </div>
+    <div id="confirm-symptoms" class="transparent-box" style="display: none;">
+        <h2>Confirm Symptoms</h2>
+        <ul id="selected-symptoms-list"></ul>
+        <p>Are these the symptoms you want to check?</p>
+        <footer>
+            <button class="footer-button" onclick="scrollToNextSection()">Next</button>
+        </footer>
+    </div>
+    <div id="submit-symptoms" class="transparent-box" style="display: none;">
+        <h2>Submit Symptoms</h2>
+        <p>Thank you for completing the symptom checker. Your results will be shown shortly.</p>
+        <footer>
+            <button class="footer-button" onclick="window.location.href='dashboard.html'">Finish</button>
+        </footer>
+    </div>
+    <script>
+        function scrollToNextSection() {
+            const sections = document.querySelectorAll('.transparent-box');
+            let nextSectionFound = false;
+            sections.forEach(section => {
+                if (!nextSectionFound) {
+                    if (section.style.display === 'none') {
+                        section.style.display = 'block';
+                        nextSectionFound = true;
+                        window.scrollTo({ top: section.offsetTop, behavior: 'smooth' });
+                    }
+                }
+            });
+        }
+
+        // Symptom handling
+        const symptomForm = document.getElementById('symptom-form');
+        const symptomInput = document.getElementById('symptom-input');
+        const symptomList = document.getElementById('symptom-list');
+        const selectedSymptomsList = document.getElementById('selected-symptoms-list');
+        const symptomMessage = document.getElementById('symptom-message');
+        const addSymptomButton = document.getElementById('add-symptom-button');
+
+        const selectedSymptoms = new Set();
+
+        symptomForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+        });
+
+        addSymptomButton.addEventListener('click', function() {
+            const symptom = symptomInput.value.trim();
+            if (symptom) {
+                if (!selectedSymptoms.has(symptom)) {
+                    selectedSymptoms.add(symptom);
+                    const li = document.createElement('li');
+                    li.textContent = symptom;
+                    symptomList.appendChild(li);
+                    symptomInput.value = '';
+                    symptomMessage.textContent = '';
+                } else {
+                    symptomMessage.textContent = 'This symptom is already added.';
+                }
+            } else {
+                symptomMessage.textContent = 'Please enter a symptom.';
+            }
+        });
+
+        // Display selected symptoms on confirm section
+        const confirmSymptomsSection = document.getElementById('confirm-symptoms');
+        const submitSymptomsSection = document.getElementById('submit-symptoms');
+
+        confirmSymptomsSection.addEventListener('click', function() {
+            selectedSymptomsList.innerHTML = '';
+            selectedSymptoms.forEach(symptom => {
+                const li = document.createElement('li');
+                li.textContent = symptom;
+                selectedSymptomsList.appendChild(li);
+            });
+        });
+
+        // Show submit symptoms section on confirm
+        const lastSection = sections[sections.length - 1];
+        lastSection.addEventListener('click', function() {
+            const footerButton = lastSection.querySelector('.footer-button');
+            footerButton.addEventListener('click', function() {
+                submitSymptomsSection.style.display = 'block';
+                window.scrollTo({ top: submitSymptomsSection.offsetTop, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

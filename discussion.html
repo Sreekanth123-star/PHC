@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion Forum</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('search.jpg');
+            background-size: cover;
+            background-position: center;
+            padding-top: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .discussion-item {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .discussion-item h2 {
+            margin-top: 0;
+        }
+        .discussion-item p {
+            margin-bottom: 0;
+        }
+        .discussion-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .discussion-form textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+            resize: none;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .comment {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+        }
+        .comment p {
+            margin-bottom: 0;
+        }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    
+</head>
+<body>
+    <a href="dashboard.html" class="home-button">Home</a>
+    <div class="container">
+        <h1 class="text-center">Discussion Forum</h1>
+        
+        <!-- Discussion Topic 1 -->
+        <div class="discussion-item" data-topic="1">
+            <h2>Discussion Topic 1</h2>
+            <p>Exploring the Health Benefits of Yoga</p>
+            <div class="comments" id="comments1"></div>
+            <form class="discussion-form" id="commentForm1">
+                <div class="form-group">
+                    <textarea class="form-control comment-input" id="commentText1" placeholder="Write your comment..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+        </div>
+        
+        <!-- Discussion Topic 2 -->
+        <div class="discussion-item" data-topic="2">
+            <h2>Discussion Topic 2</h2>
+            <p>Healthy Eating Habits for Busy Lifestyles</p>
+            <div class="comments" id="comments2"></div>
+            <form class="discussion-form" id="commentForm2">
+                <div class="form-group">
+                    <textarea class="form-control comment-input" id="commentText2" placeholder="Write your comment..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+        </div>
+        
+        <!-- Discussion Topic 3 -->
+        <div class="discussion-item" data-topic="3">
+            <h2>Discussion Topic 3</h2>
+            <p>Mindful Movement: Incorporating Exercise into Daily Life</p>
+            <div class="comments" id="comments3"></div>
+            <form class="discussion-form" id="commentForm3">
+                <div class="form-group">
+                    <textarea class="form-control comment-input" id="commentText3" placeholder="Write your comment..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+        </div>
+        
+        <!-- Discussion Topic 4 -->
+        <div class="discussion-item" data-topic="4">
+            <h2>Discussion Topic 4</h2>
+            <p>Prioritizing Self-Care: Strategies for Stress Management</p>
+            <div class="comments" id="comments4"></div>
+            <form class="discussion-form" id="commentForm4">
+                <div class="form-group">
+                    <textarea class="form-control comment-input" id="commentText4" placeholder="Write your comment..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+        </div>
+
+        <!-- Discussion Topic 5 -->
+        <div class="discussion-item" data-topic="5">
+            <h2>Discussion Topic 5</h2>
+            <p>Journaling as a Therapeutic Practice</p>
+            <div class="comments" id="comments5"></div>
+            <form class="discussion-form" id="commentForm5">
+                <div class="form-group">
+                    <textarea class="form-control comment-input" id="commentText5" placeholder="Write your comment..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+        </div>
+
+        <!-- Discussion Topic 6 -->
+        <div class="discussion-item" data-topic="6">
+            <h2>Discussion Topic 6</h2>
+            <p>Exploring Aromatherapy for Relaxation</p>
+            <div class="comments" id="comments6"></div>
+            <form class="discussion-form" id="commentForm6">
+                <div class="form-group">
+                    <textarea class="form-control comment-input" id="commentText6" placeholder="Write your comment..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+        </div>
+
+        <!-- Discussion Topic 7 -->
+        <div class="discussion-item" data-topic="7">
+            <h2>Discussion Topic 7</h2>
+            <p>Creative Ways to Unwind After a Long Day</p>
+            <div class="comments" id="comments7"></div>
+            <form class="discussion-form" id="commentForm7">
+                <div class="form-group">
+                    <textarea class="form-control comment-input" id="commentText7" placeholder="Write your comment..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+        </div>
+    </div>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"></script>
+    <script type="module" src="fc.js"></script>
+    <script type="module" src="discuss.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOG IN</title>
+    <script type="module" src="firebase-config.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('loginpic.jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 600px;
+            padding: 60px;
+            border-radius: 5px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .container h1 {
+            margin-bottom: 20px;
+        }
+        .container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .container form input[type="email"],
+        .container form input[type="password"],
+        .container form select {
+            margin-bottom: 11px;
+            width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .container form button {
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container form button:hover {
+            background-color: #0056b3;
+        }
+        .container a {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .container a:hover {
+            color: #0056b3;
+        }
+        .more-queries {
+            margin-top: 20px;
+        }
+        .create-account {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .forgot-password {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .logo {
+            position: absolute;
+            top: 10px; /* Adjust top spacing as needed */
+            right: 10px; /* Adjust right spacing as needed */
+            height: 100px; /* Increased height for larger logo */
+            width: auto; /* Maintain aspect ratio */
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <img src="PHC(logo).png" alt="PHC Logo" class="logo">
+    <div class="container">
+        <h1>SIGN IN</h1>
+        <form id="loginForm" action="login.html" method="post">            
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password"  placeholder="Password" required>
+            <button id="Submit" type="submit">Log in</button>
+        </form>
+        <p class="create-account"><a href="create_account.html">Don't have an account? Create one here.</a></p>
+        <p class="forgot-password"><a href="change_password.html">Forgot your password? </a></p>
+        <div class="more-queries">
+            <p>For more queries, connect with us:</p>
+            <p><a href="mailto:hospitalname@gmail.com">PHC4u@gmail.com</a></p>
+            <p>Phone: 1234567890</p>
+        </div>
+    </div>
+    <script type="module" src="login.js"></script>
+</body>
+</html>

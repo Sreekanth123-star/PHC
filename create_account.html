@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - PHC</title>
+    <script type="module" src="firebase-config.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('createacc.jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative; /* Ensure body is relative for absolute positioning */
+        }
+        .container {
+            width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        .container h1 {
+            margin-bottom: 20px;
+        }
+        .container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .container form input[type="text"],
+        .container form input[type="email"],
+        .container form input[type="password"] {
+            margin-bottom: 10px;
+            width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            background-color: transparent;
+            color: black;
+            transition: border-color 0.2s ease-in-out;
+        }
+        .container form input[type="text"]:focus,
+        .container form input[type="email"]:focus,
+        .container form input[type="password"]:focus {
+            border-color: black;
+            outline: none;
+        }
+        .container form button {
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container form button:hover {
+            background-color: #0056b3;
+        }
+        .container a {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            display: block;
+        }
+        .container a:hover {
+            color: #0056b3;
+        }
+        .alert {
+            width: 100%;
+            background: rgb(131, 189, 220);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 900;
+            display: none;
+            margin-bottom: 10px;
+        }
+        .logo {
+            position: absolute;
+            top: 10px; /* Adjust top spacing as needed */
+            right: 10px; /* Adjust right spacing as needed */
+            height: 100px; /* Increased height for larger logo */
+            width: auto; /* Maintain aspect ratio */
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    
+    <img src="PHC(logo).png" alt="PHC Logo" class="logo">
+    
+    <div class="container">
+        <h1>CREATE ACCOUNT</h1>
+        <form action="" id="RegistrationForm">
+            <div class="alert">Successfully Created Account!!</div>
+            <br>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password"  placeholder="Password" required>
+            <input type="password" id="Password" name="password" placeholder="Confirm Password" required>
+            <button id="Submit" type="submit">Create Account</button>
+        </form>
+        <p class="more-queries">Already have an account?</p>
+        <a href="login.html">Log in here.</a>
+    </div>
+    <script type="module" src="register.js"></script>
+    <script>
+        function redirectToLoginPage() {
+            window.location.href = "login.html";
+        }
+
+        document.getElementById("RegistrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            var alertBox = document.querySelector('.alert');
+            alertBox.style.display = 'block';
+            
+            setTimeout(redirectToLoginPage, 3000);
+        });
+    </script>
+</body>
+</html>

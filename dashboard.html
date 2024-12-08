@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="dashboard.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <style>
+        body {
+            background-image: url('dashpic.jpeg');
+            background-size: cover;
+            min-height: 100vh;
+            margin : 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto; 
+        }
+
+        .footer div {
+            flex: 1; 
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 5px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .navbar {
+            background-color: #333;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a {
+            color: white;
+            padding: 15px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            display: block;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .logout {
+            position: right;
+            top: 15px;
+            right: 16px;
+            color: white;
+            cursor: pointer;
+        }
+        .sidebar {
+            background-color: #333;
+            position: fixed;
+            left: 0;
+            top: 35%;
+            transform: translateY(-50%);
+            height: 50%;
+            width: 320px;
+            overflow-x: hidden;
+            padding-top: 40px;
+        }
+        .sidebar a {
+            padding: 10px 5px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color:black;
+        }
+        .sidebar h2 {
+            padding: 10px 15px;
+            font-size: 25px;
+            color: white;
+        }
+        .container {
+            margin-top: 50px; 
+            position: relative;
+        }
+        .welcome-msg {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #calendar {
+            width: 140%; 
+            margin-bottom: 40px;
+            background-color: #222; 
+            color: #fff; 
+            border-radius: 10px; 
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75); 
+            position: relative; 
+            bottom: -5%; 
+            right: 8%; 
+            transform: translate(50%, 0); 
+        }
+        .fc-header-toolbar {
+            background-color: #555; 
+            border-radius: 10px 10px 0 0; 
+        }
+        .fc-button-primary {
+            background-color: #007bff; 
+        }
+        .logo {
+            position: absolute;
+            top: 72px; /* Adjust top spacing as needed */
+            right: 10px; /* Adjust right spacing as needed */
+            height: 110px; /* Increased height for larger logo */
+            width: auto; /* Maintain aspect ratio */
+            z-index: 10;
+        }        
+        
+    </style>
+</head>
+<body>
+    <img src="PHC(logo).png" alt="PHC Logo" class="logo">
+    <div class="navbar">
+        
+        <a href="dashboard.html" class="active">Home</a>
+        <form id="search-form">
+            <input type="text" name="search" placeholder="Search..." id="search-input">
+            <button type="submit" id="search-btn">Search</button>
+        </form>
+        <a href="Myprofile.html" id="Profile-link">My Profile</a>
+        <a href="seadiscond.html" id="disease-link">Search for diseases & conditions</a>
+        <a href="symptomchecker.html" id="medical-records-link">Symptom Checker</a>
+        <a href="Doconnect.html" id="Doconnect-link">Doctor Connect</a>
+        <a href="rating_review.html" id="rating-review-link">Ratings & Reviews</a>
+        <a href="#" class="logout" id="logoutBtn">Logout</a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>User Dashboard</h1>
+                <p class="welcome-msg">Welcome, User!!</p>
+                <br>
+                <h2>Health Tips</h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Balanced Diet</h5>
+                            <p class="card-text">Eat a balanced diet with plenty of fruits and vegetables to maintain overall health.</p>
+                            <i class="fas fa-carrot"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Stay Hydrated</h5>
+                            <p class="card-text">Drink enough water throughout the day to stay hydrated.</p>
+                            <i class="fas fa-glass-whiskey"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Regular Exercise</h5>
+                            <p class="card-text">Engage in regular physical activity to keep your body and mind healthy.</p>
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Quality Sleep</h5>
+                            <p class="card-text">Get adequate sleep each night to support overall well-being and cognitive function.</p>
+                            <i class="fas fa-bed"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Stress Management</h5>
+                            <p class="card-text">Practice stress-reduction techniques such as meditation or deep breathing exercises.</p>
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Healthy Snacking</h5>
+                            <p class="card-text">Choose nutritious snacks like nuts, fruits, or yogurt to satisfy cravings.</p>
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <h2>Additional Features</h2>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card mb-3 health-tip-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Healthy Cooking Demo</h5>
+                        <p class="card-text">Watch a video demonstration of a nutritious recipe and learn cooking tips.</p>
+                        <a href="https://www.youtube.com/watch?v=URqHNn1ZyoU" class="btn btn-primary" target="_blank">Watch Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card mb-3 health-tip-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Morning Yoga Routine</h5>
+                        <p class="card-text">Start your day with a relaxing yoga session to improve flexibility and mental clarity.</p>
+                        <a href="morning_yoga.html" class="btn btn-primary">View Routine</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card mb-3 health-tip-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Mental Wellness Workshop</h5>
+                        <p class="card-text">Check out the Workshop to learn effective stress management techniques and mindfulness practices.</p>
+                        <a href="https://www.youtube.com/live/KFVJTkVhm30?si=Iejmc7eQleXs_c5S" class="btn btn-primary">Watch Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card mb-3 health-tip-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Healthy Recipes</h5>
+                        <p class="card-text">Explore delicious and nutritious recipes for a balanced diet.</p>
+                        <a href="https://vaya.in/10-balanced-diet-recipes-to-satisfy-your-taste-buds/" class="btn btn-primary">View Recipes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h2>User Feedback</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Share Your Experience</h5>
+                        <p class="card-text">Tell us how the health tips have helped You!!!</p>
+                        <a href="discussion.html" class="btn btn-primary">Join the Discussion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+            <div class="col-md-4">
+                <div id="calendar"></div>
+                <div class="sidebar">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="Myprofile.html" id="Profile-link">My Profile</a></li>
+                        <li><a href="seadiscond.html" id="disease-sidebar-link">Search for diseases & conditions</a></li>
+                        <li><a href="symptomchecker.html" id="medical-records-sidebar-link">Symptom Checker</a></li>
+                        <li><a href="Doconnect.html" id="Doconnect-link">Doctor Connect</a></li>
+                        <li><a href="rating_review.html" id="rating-review-sidebar-link">Ratings & Reviews</a></li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div>
+            <a href="about_us.html">About Us</a>
+            <a href="Terms_and_conditions.html">Terms and Conditions</a>
+            <a href="Privacy_policy.html">Privacy Policy</a>
+            <a href="Blogs.html">Blogs</a>
+            <a href="Career.html">Career</a>
+            <a href="Academics.html">Academics</a>
+            <a href="Info_desk.html">Info Desk</a>
+        </div>
+        <div>
+            <p>&copy; 2024 PHC. All Rights Reserved.</p>
+        </div>
+        <div>
+            <h3>Contact Information:</h3>
+            <p>Email: <a href="mailto:hospitalname@gmail.com">PHC4u@gmail.com</a></p>
+            <p>Phone: 123-456-7890</p>
+        </div>
+        <div>
+            <p>Stay connected with us for the latest health updates, medical tips, and more!</p>
+        </div>
+    </footer>
+    <script type="module">
+        import { getAuth,signOut } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+        const auth = getAuth();
+        const logoutBtn = document.getElementById("logoutBtn");
+        logoutBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const confirmed = confirm("Are you sure you want to log out?");
+            if (confirmed) {
+                signOut(auth).then(() => {
+                    // Sign-out successful.
+                    window.location.href = "landing.html";
+                }).catch((error) => {
+                    // An error happened.
+                    console.error("Error signing out: ", error);
+                });
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                buttonText: {
+                    today: 'Today',
+                    month: 'Month',
+                    week: 'Week',
+                    day: 'Day'
+                }
+            });
+            calendar.render();
+        });
+      </script>
+</body>
+</html>

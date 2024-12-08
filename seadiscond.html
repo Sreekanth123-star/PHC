@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Search</title>
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            background-color: lightblue;
+            color: #fff;
+            position: relative;
+        }
+
+        h1, h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        label {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="text"],
+        select,
+        textarea,
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .disease-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .disease-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .selected-diseases {
+            margin-top: 20px;
+        }
+
+        .selected-disease-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #e0f7fa;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            text-decoration: none;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="dashboard.html" class="home-button">Home</a>
+        <h1>Disease Search</h1>
+    </header>
+    <div class="container">
+        <label for="search">Search Disease:</label>
+        <input type="text" id="searchBox" placeholder="Enter disease name...">
+        <button onclick="searchDisease()">Search</button>
+        
+        <h2>Common Diseases</h2>
+        <ul id="diseaseList" class="disease-list"></ul>
+
+        <h2>Selected Diseases</h2>
+        <ul id="selectedDiseases" class="selected-diseases"></ul>
+        <!-- Corrected button ID to match the event listener -->
+        <button id="submitButton">Submit</button>
+
+    </div>
+    <script type="module">
+        import { handleSubmit } from './seadiscond.js';
+
+        const commonDiseases = [
+            'Common Cold', 'Influenza (Flu)','Pneumonia', 'Chickenpox', 'Measles', 'Mumps', 'Rubella', 'Hepatitis',
+            'Tuberculosis', 'Malaria', 'Typhoid Fever', 'Cholera', 'Dengue Fever', 'Zika Virus', 'Ebola Virus', 'Lyme Disease',
+            'Rabies', 'Hypertension', 'Diabetes', 'Asthma', 'Arthritis', 'Osteoporosis', 'Depression', 'Anxiety Disorders',
+            'Bipolar Disorder', 'Schizophrenia', 'Alzheimer\'s Disease', 'Migraine', 'Parkinson\'s Disease', 'Multiple Sclerosis',
+            'Epilepsy','Psoriasis', 'Eczema', 'Lupus', 'Gout','Hyperthyroidism', 'Hypothyroidism',  'Leukemia', 'Lymphoma', 'Skin Cancer',
+            'Breast Cancer', 'Lung Cancer', 'Prostate Cancer','Colon Cancer', 'Kidney Disease', 'Heart Disease', 'Stroke', 'Obesity',
+            'Chronic Obstructive Pulmonary Disease (COPD)'
+        ];
+
+        const diseaseList = document.getElementById('diseaseList');
+        const selectedDiseases = document.getElementById('selectedDiseases');
+
+        // Function to display initial disease list
+        function displayDiseases(diseases) {
+            diseaseList.innerHTML = ''; // Clear previous list items
+
+            diseases.forEach(disease => {
+                const li = document.createElement('li');
+                li.className = 'disease-item';
+
+                const label = document.createElement('label');
+                label.textContent = disease;
+                li.appendChild(label);
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = disease;
+                checkbox.onchange = handleCheckboxChange;
+                li.appendChild(checkbox);
+
+
+                diseaseList.appendChild(li);
+            });
+        }
+
+        // Function to display selected diseases
+        function displaySelectedDiseases(diseases) {
+            selectedDiseases.innerHTML = ''; // Clear previous list items
+
+            diseases.forEach(disease => {
+                const li = document.createElement('li');
+                li.className = 'selected-disease-item';
+                li.textContent = disease;
+
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = () => removeSelectedDisease(disease);
+                li.appendChild(removeButton);
+
+                selectedDiseases.appendChild(li);
+            });
+        }
+
+        const selectedDiseaseSet = new Set();
+
+        // Function to handle checkbox changes
+        function handleCheckboxChange(event) {
+            const disease = event.target.value;
+
+            if (event.target.checked) {
+                selectedDiseaseSet.add(disease);
+            } else {
+                selectedDiseaseSet.delete(disease);
+            }
+            displaySelectedDiseases(Array.from(selectedDiseaseSet));
+        }
+
+        function removeSelectedDisease(disease) {
+            selectedDiseaseSet.delete(disease);
+            displaySelectedDiseases(Array.from(selectedDiseaseSet));
+
+            // Uncheck the checkbox in the common diseases list
+            const checkboxes = diseaseList.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.value === disease) {
+                    checkbox.checked = false;
+                }
+            });
+        }
+
+
+
+        function searchDisease() {
+            const searchBox = document.getElementById('searchBox');
+            const searchQuery = searchBox.value.toLowerCase();
+
+            const filteredDiseases = commonDiseases.filter(disease =>
+                disease.toLowerCase().includes(searchQuery)
+            );
+
+            displayDiseases(filteredDiseases);
+        }
+
+        displayDiseases(commonDiseases);
+
+        document.getElementById('searchBox').addEventListener('input', searchDisease);
+        document.getElementById('submitButton').addEventListener('click', handleSubmit);
+        
+    </script>
+    <script type="module" src="fc.js"></script>
+    <script type="module" src="seadiscond.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Checkup Dashboard</title>
+  <style>
+    body {
+      background-image: url('med.jpg');
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+    }
+    .intro-section, .patient-information-section {
+      text-align: center;
+      padding: 90px;
+    }
+    .intro-section h2 {
+      font-size: 4.5rem;
+    }
+    .intro-section p {
+      font-size: 1.5rem;
+      line-height: 1.7;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Introduction section -->
+    <div class="intro-section">
+      <h2>Introduction</h2>
+      <h1><p>Welcome to our Medical Checkup Service.</p>
+      <p>Before Using the Checkup, please read the Terms of Service and Remember:</p>
+      <p>Checkup isn't a diagnosis. It's only for your information and not a qualified medical opinion.</p>
+      <p>Checkup isn't for emergencies. Call your local emergency number right away when there's a health emergency.</p>
+      <p>Your data is Safe. The information you give won't be shared or used to identify you.</p>
+      <p><label for="terms-of-service">I agree to the terms of service:</label></p></h1>
+      <input type="checkbox" id="terms-of-service">
+      <button id="submit-consent">Submit</button>
+      
+    </div>
+
+    <!-- Patient information section -->
+    <div id="patients-section" class="hidden">
+      <h2>Patient Information</h2>
+      <div>
+        <label for="patient-name">Whom is this checkup for?</label>
+        <input type="text" id="patient-name">
+      </div>
+      <!-- Additional form fields for patient information -->
+    </div>
+  </div>
+
+  <script>
+    // JavaScript to handle interaction and event listeners
+    document.getElementById("submit-consent").addEventListener("click", function() {
+      var termsOfServiceCheckbox = document.getElementById("terms-of-service");
+      if (termsOfServiceCheckbox.checked) {
+        // Redirect to symptomchecker.html
+        window.location.href = "symptomchecker.html";
+      } else {
+        alert("Please agree to the terms of service.");
+      }
+    });
+
+    document.getElementById("submit-health-consent").addEventListener("click", function() {
+      var healthInformationConsentCheckbox = document.getElementById("health-information-consent");
+      if (healthInformationConsentCheckbox.checked) {
+        // Perform further actions if needed
+        alert("Thank you for your consent to use your health information.");
+      } else {
+        alert("Please consent to use your health information.");
+      }
+    });
+  </script>
+</body>
+</html>
